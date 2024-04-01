@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="IntelliJ IDEA GridLayout">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/intellij_forms_rt.jar!/" />
+      <root url="jar://$APPLICATION_CONFIG_DIR$/jdbc-drivers/MySQL ConnectorJ/8.2.0/com/mysql/mysql-connector-j/8.2.0/mysql-connector-j-8.2.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/lib/intellij_forms_rt_src.zip!/" />
+    </SOURCES>
+  </library>
+</component>
