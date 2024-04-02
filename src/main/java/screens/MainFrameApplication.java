@@ -75,12 +75,15 @@ public class MainFrameApplication extends javax.swing.JFrame {
         creerRepertoire = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        creerRepertoire1 = new javax.swing.JButton();
         creerRepertoire2 = new javax.swing.JButton();
         searchButton = new javax.swing.JButton();
         searchField = new javax.swing.JTextField();
         searchOption = new javax.swing.JComboBox<>();
         cancelSearch = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -117,13 +120,6 @@ public class MainFrameApplication extends javax.swing.JFrame {
         jTable1.setMinimumSize(new java.awt.Dimension(480, 580));
         jScrollPane1.setViewportView(jTable1);
 
-        creerRepertoire1.setText("Sauvegarder le repertoire");
-        creerRepertoire1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                creerRepertoire1ActionPerformed(evt);
-            }
-        });
-
         creerRepertoire2.setText("Liste des contacts enregistrés en base de données");
         creerRepertoire2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -155,14 +151,39 @@ public class MainFrameApplication extends javax.swing.JFrame {
             }
         });
 
+        jMenu1.setText("Fichier");
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
+
+        jMenuItem1.setText("Enregister");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setText("Quitter");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(creerRepertoire1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(creerRepertoire2)
                 .addGap(69, 69, 69)
                 .addComponent(creerRepertoire, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -196,17 +217,16 @@ public class MainFrameApplication extends javax.swing.JFrame {
                         .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(searchOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(cancelSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 565, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 540, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(creerRepertoire, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(creerRepertoire1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(creerRepertoire2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(99, Short.MAX_VALUE)
+                    .addContainerGap(86, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(62, Short.MAX_VALUE)))
+                    .addContainerGap(50, Short.MAX_VALUE)))
         );
 
         pack();
@@ -218,22 +238,6 @@ public class MainFrameApplication extends javax.swing.JFrame {
         this.setVisible(false);
         new CreerContact(this).setVisible(true);
     }//GEN-LAST:event_creerRepertoireActionPerformed
-
-    private void creerRepertoire1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creerRepertoire1ActionPerformed
-        // TODO add your handling code here:
-
-        repertoire.getContacts().stream().forEach(
-                contact -> {
-                    try {
-                        contact.getRepository().save(contact);
-                    } catch (SQLException e) {
-                        showErrorStatic("Erreur à l'insertion des données", "Une erreur est survenue lors de l'enregisterement");
-                    }
-                }
-        );
-
-        JOptionPane.showConfirmDialog(new JFrame(), "Success", "Le repertoire a été sauvegardé avec succes\nNous vidons le repertoire.\nVous pouvez consulter les contacts enregistrés en cliquant en bas (bouton d'action)", JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_creerRepertoire1ActionPerformed
 
     private void creerRepertoire2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creerRepertoire2ActionPerformed
 
@@ -249,7 +253,6 @@ public class MainFrameApplication extends javax.swing.JFrame {
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
 
         // TODO add your handling code here:
-
         cancelSearch.setVisible(true);
         String option = (String) searchOption.getSelectedItem();
         loadTableContent(repertoire.rechercherContact(EnumsBuilder.champRechercheEnumFromString(option), searchField.getText(), 2));
@@ -265,6 +268,29 @@ public class MainFrameApplication extends javax.swing.JFrame {
         loadTableContent(repertoire.getContacts());
         cancelSearch.setVisible(false);
     }//GEN-LAST:event_cancelSearchActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        repertoire.getContacts().stream().forEach(
+                contact -> {
+                    try {
+                        contact.getRepository().save(contact);
+                    } catch (SQLException e) {
+                        showErrorStatic("Erreur à l'insertion des données", "Une erreur est survenue lors de l'enregisterement");
+                    }
+                }
+        );
+
+        JOptionPane.showConfirmDialog(new JFrame(), "Success", "Le repertoire a été sauvegardé avec succes\nNous vidons le repertoire.\nVous pouvez consulter les contacts enregistrés en cliquant en bas (bouton d'action)", JOptionPane.INFORMATION_MESSAGE);
+
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+
+    }//GEN-LAST:event_jMenu1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -321,8 +347,11 @@ public class MainFrameApplication extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelSearch;
     private javax.swing.JButton creerRepertoire;
-    private javax.swing.JButton creerRepertoire1;
     private javax.swing.JButton creerRepertoire2;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private java.awt.Label label15;

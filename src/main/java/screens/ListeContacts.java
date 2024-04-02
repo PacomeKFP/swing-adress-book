@@ -248,7 +248,6 @@ public class ListeContacts extends javax.swing.JFrame {
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
 
         // TODO add your handling code here:
-        
         cancelSearch.setVisible(true);
         String option = (String) searchOption.getSelectedItem();
         loadTableContent(repertoirePrincipal.rechercherContact(EnumsBuilder.champRechercheEnumFromString(option), searchField.getText(), 2));
@@ -256,7 +255,7 @@ public class ListeContacts extends javax.swing.JFrame {
 
     private void cancelSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelSearchActionPerformed
         // TODO add your handling code here:
-        
+
         loadTableContent(repertoirePrincipal.getContacts());
         cancelSearch.setVisible(false);
     }//GEN-LAST:event_cancelSearchActionPerformed
