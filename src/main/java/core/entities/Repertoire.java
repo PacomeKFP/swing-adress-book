@@ -5,7 +5,7 @@
 package core.entities;
 
 import core.helpers.enums.ChampRechercheEnum;
-import core.helpers.utils.Levenshtein;
+import core.helpers.tools.Levenshtein;
 
 import java.util.ArrayList;
 import java.util.Comparator;

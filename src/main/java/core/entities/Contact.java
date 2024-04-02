@@ -5,6 +5,7 @@
 package core.entities;
 
 import core.helpers.enums.ChampRechercheEnum;
+import core.repositories.ContactRepository;
 
 import java.sql.Date;
 
@@ -32,6 +33,7 @@ public abstract class Contact {
         this.telNumber = telNumber;
     }
 
+    public abstract ContactRepository getRepository();
 
     protected void modifier(Contact contact) {
         this.nom = contact.getNom();

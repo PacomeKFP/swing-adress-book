@@ -4,18 +4,17 @@
  */
 package screens;
 
+import core.entities.Contact;
 import core.entities.Repertoire;
-import core.helpers.enums.ChampRechercheEnum;
-import core.helpers.utils.Database;
-import core.helpers.utils.ErrorMessages;
-import core.repositories.AgentRepository;
-import core.repositories.EnseignantRepository;
-import core.repositories.EtudiantRepository;
+import core.helpers.tools.Database;
+import core.helpers.tools.EnumsBuilder;
+import core.helpers.tools.ErrorMessages;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * @author pacome
@@ -25,19 +24,41 @@ public class MainFrameApplication extends javax.swing.JFrame {
     /**
      * Creates new form MainFrameApplication
      */
-    private Connection dbConnection;
+    private final Connection dbConnection;
     private Repertoire repertoire;
 
     public MainFrameApplication(Connection connection) {
         dbConnection = connection;
+        repertoire = new Repertoire();
         initComponents();
+        loadTableContent(repertoire.getContacts());
+    }
+
+    public void loadTableContent(List<Contact> contacts) {
+        DefaultTableModel tableModel = new DefaultTableModel();
+        tableModel.addColumn("Code");
+        tableModel.addColumn("Nom");
+        tableModel.addColumn("Date de Naissance");
+
+        tableModel.addColumn("Telephone");
+        tableModel.addColumn("Email");
+        tableModel.addColumn("Adresse");
+
+        contacts.stream()
+                .forEach(contact -> tableModel.addRow(new Object[]{contact.getCode(), contact.getNom(), contact.getDateNaissance().toString(), contact.getTelNumber(), contact.getEmail(), contact.getAddress()}));
+
+        jTable1.setModel(tableModel);
+    }
+
+    public Repertoire getRepertoire() {
+        return repertoire;
     }
 
     private void showError(String title, String message) {
         JOptionPane.showConfirmDialog(new JFrame(), message, title, JOptionPane.ERROR_MESSAGE);
     }
 
-    private static void showErrorStatic(String title, String message) {
+    public static void showErrorStatic(String title, String message) {
         JOptionPane.showConfirmDialog(new JFrame(), message, title, JOptionPane.ERROR_MESSAGE);
     }
 
@@ -50,27 +71,18 @@ public class MainFrameApplication extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        searchField = new javax.swing.JTextField();
-        seachButton = new javax.swing.JButton();
         label15 = new java.awt.Label();
         creerRepertoire = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jComboBox1 = new javax.swing.JComboBox<>();
         creerRepertoire1 = new javax.swing.JButton();
         creerRepertoire2 = new javax.swing.JButton();
+        searchButton = new javax.swing.JButton();
+        searchField = new javax.swing.JTextField();
+        searchOption = new javax.swing.JComboBox<>();
+        cancelSearch = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        searchField.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        searchField.setMinimumSize(new java.awt.Dimension(45, 35));
-        searchField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchFieldActionPerformed(evt);
-            }
-        });
-
-        seachButton.setLabel("Rechercher");
 
         label15.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         label15.setFont(new java.awt.Font("Laksaman", 1, 18)); // NOI18N
@@ -105,8 +117,6 @@ public class MainFrameApplication extends javax.swing.JFrame {
         jTable1.setMinimumSize(new java.awt.Dimension(480, 580));
         jScrollPane1.setViewportView(jTable1);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CODE", "NOM", "EMAIL", "TELEPHONE" }));
-
         creerRepertoire1.setText("Sauvegarder le repertoire");
         creerRepertoire1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,33 +131,58 @@ public class MainFrameApplication extends javax.swing.JFrame {
             }
         });
 
+        searchButton.setLabel("Rechercher");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
+
+        searchField.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        searchField.setMinimumSize(new java.awt.Dimension(45, 35));
+        searchField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchFieldActionPerformed(evt);
+            }
+        });
+
+        searchOption.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CODE", "NOM", "EMAIL", "TELEPHONE" }));
+
+        cancelSearch.setText("Annuler");
+        cancelSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelSearchActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(label15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62)
-                        .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(seachButton, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(creerRepertoire1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(creerRepertoire2)
-                        .addGap(69, 69, 69)
-                        .addComponent(creerRepertoire, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(30, 30, 30)
+                .addComponent(creerRepertoire1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(creerRepertoire2)
+                .addGap(69, 69, 69)
+                .addComponent(creerRepertoire, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addComponent(label15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54)
+                .addComponent(cancelSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(searchOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 963, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1078, Short.MAX_VALUE)
                     .addContainerGap()))
         );
         layout.setVerticalGroup(
@@ -158,8 +193,9 @@ public class MainFrameApplication extends javax.swing.JFrame {
                     .addComponent(label15, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(seachButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(searchOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cancelSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 565, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(creerRepertoire, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -176,30 +212,59 @@ public class MainFrameApplication extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void searchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchFieldActionPerformed
-
     private void creerRepertoireActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creerRepertoireActionPerformed
-            // TODO add your handling code here:
-        
+        // TODO add your handling code here:
+
+        this.setVisible(false);
+        new CreerContact(this).setVisible(true);
     }//GEN-LAST:event_creerRepertoireActionPerformed
 
     private void creerRepertoire1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creerRepertoire1ActionPerformed
         // TODO add your handling code here:
+
+        repertoire.getContacts().stream().forEach(
+                contact -> {
+                    try {
+                        contact.getRepository().save(contact);
+                    } catch (SQLException e) {
+                        showErrorStatic("Erreur à l'insertion des données", "Une erreur est survenue lors de l'enregisterement");
+                    }
+                }
+        );
+
+        JOptionPane.showConfirmDialog(new JFrame(), "Success", "Le repertoire a été sauvegardé avec succes\nNous vidons le repertoire.\nVous pouvez consulter les contacts enregistrés en cliquant en bas (bouton d'action)", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_creerRepertoire1ActionPerformed
 
     private void creerRepertoire2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creerRepertoire2ActionPerformed
 
         // Naviguer vers la liste des contacts
-        
         // ouvrir la fenetre des contacts
         new ListeContacts(dbConnection, this).setVisible(true);
-        
+
         // fermer la fenetre actuelle
         this.setVisible(false);
-        
+
     }//GEN-LAST:event_creerRepertoire2ActionPerformed
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+
+        // TODO add your handling code here:
+
+        cancelSearch.setVisible(true);
+        String option = (String) searchOption.getSelectedItem();
+        loadTableContent(repertoire.rechercherContact(EnumsBuilder.champRechercheEnumFromString(option), searchField.getText(), 2));
+    }//GEN-LAST:event_searchButtonActionPerformed
+
+    private void searchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchFieldActionPerformed
+
+    private void cancelSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelSearchActionPerformed
+        // TODO add your handling code here:
+
+        loadTableContent(repertoire.getContacts());
+        cancelSearch.setVisible(false);
+    }//GEN-LAST:event_cancelSearchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -243,24 +308,26 @@ public class MainFrameApplication extends javax.swing.JFrame {
         Connection finalConnection = Database.initializeDatabaseConnection("adress_book", "root", "", port);
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                if (finalConnection != null)
+                if (finalConnection != null) {
                     new MainFrameApplication(finalConnection).setVisible(true);
-                else
+                } else {
                     showErrorStatic("Erreur de base de donnée", ErrorMessages.SQLErrorMessage);
+                }
             }
         });
 
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cancelSearch;
     private javax.swing.JButton creerRepertoire;
     private javax.swing.JButton creerRepertoire1;
     private javax.swing.JButton creerRepertoire2;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private java.awt.Label label15;
-    private javax.swing.JButton seachButton;
+    private javax.swing.JButton searchButton;
     private javax.swing.JTextField searchField;
+    private javax.swing.JComboBox<String> searchOption;
     // End of variables declaration//GEN-END:variables
 }

@@ -11,7 +11,7 @@ import core.entities.Repertoire;
 import core.helpers.enums.ChampRechercheEnum;
 import core.helpers.enums.CycleEnum;
 import core.helpers.enums.StatutEnseignantEnum;
-import core.helpers.utils.Database;
+import core.helpers.tools.Database;
 import core.repositories.EtudiantRepository;
 
 import java.sql.Connection;
@@ -56,7 +56,7 @@ public class AdressBook {
 
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ClassNotFoundException {
         Connection connection = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -83,7 +83,10 @@ public class AdressBook {
                 "690",
                 "3");
 
+        System.out.println("Classe name" + etudiant.getClass().getName());
+
         try {
+            Database.initializeDatabaseConnection("adress_book", "root", "", 3307);
             EtudiantRepository studentRepository = new EtudiantRepository(Database.connection);
             studentRepository.findAll()
                     .stream()

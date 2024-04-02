@@ -1,4 +1,4 @@
-package core.helpers.utils;
+package core.helpers.tools;
 
 public class ErrorMessages {
     public static String SQLErrorMessage = "Une erreur est survenue lors de la tentative de connexion à la base de donnée.\n" +

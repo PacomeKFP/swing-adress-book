@@ -5,6 +5,9 @@
 package core.entities;
 
 import core.helpers.enums.StatutAgentEnum;
+import core.helpers.tools.Database;
+import core.repositories.AgentRepository;
+import core.repositories.ContactRepository;
 
 import java.sql.Date;
 
@@ -17,6 +20,14 @@ public class Agent extends Contact {
     private String categorie, indiceSalaire, occupation;
 
     public Agent() {
+    }
+
+    /**
+     * @return 
+     */
+    @Override
+    public ContactRepository getRepository() {
+       return new AgentRepository(Database.connection);
     }
 
     public Agent(float salaire, StatutAgentEnum statut, String categorie, String indiceSalaire, String occupation, String code, String nom, Date dateNaissance, String address, String email, String telNumber) {

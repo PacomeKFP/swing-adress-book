@@ -7,9 +7,9 @@ package screens;
 import core.entities.Contact;
 import core.entities.Repertoire;
 import core.helpers.enums.ChampRechercheEnum;
-import core.helpers.utils.Database;
-import core.helpers.utils.EnumsBuilder;
-import core.helpers.utils.ErrorMessages;
+import core.helpers.tools.Database;
+import core.helpers.tools.EnumsBuilder;
+import core.helpers.tools.ErrorMessages;
 import core.repositories.AgentRepository;
 import core.repositories.EnseignantRepository;
 import core.repositories.EtudiantRepository;
@@ -238,6 +238,7 @@ public class ListeContacts extends javax.swing.JFrame {
     private void creerRepertoire1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creerRepertoire1ActionPerformed
         // TODO add your handling code here:
 
+        this.mainFrameApplication.loadTableContent(repertoirePrincipal.getContacts());
         this.mainFrameApplication.setVisible(true);
 
         this.dispose();

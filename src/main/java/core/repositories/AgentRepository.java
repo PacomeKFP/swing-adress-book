@@ -1,7 +1,7 @@
 package core.repositories;
 
 import core.entities.Agent;
-import core.helpers.utils.EnumsBuilder;
+import core.helpers.tools.EnumsBuilder;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AgentRepository extends ContactRepository implements Repository<Agent> {
+public class AgentRepository extends ContactRepository<Agent> {
 
     public AgentRepository(Connection connection) {
         super(connection);

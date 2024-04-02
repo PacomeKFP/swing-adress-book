@@ -5,7 +5,11 @@
 package core.entities;
 
 import core.helpers.enums.StatutEnseignantEnum;
-import core.helpers.utils.EnumsBuilder;
+import core.helpers.tools.Database;
+import core.helpers.tools.EnumsBuilder;
+import core.repositories.AgentRepository;
+import core.repositories.ContactRepository;
+import core.repositories.EnseignantRepository;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -18,6 +22,14 @@ public class Enseignant extends Contact{
     private StatutEnseignantEnum statut;
 
     public Enseignant() {
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public ContactRepository getRepository() {
+        return new EnseignantRepository(Database.connection);
     }
 
     public Enseignant(StatutEnseignantEnum statut, String code, String nom, Date dateNaissance, String address, String email, String telNumber) {

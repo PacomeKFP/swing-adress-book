@@ -5,7 +5,11 @@
 package core.entities;
 
 import core.helpers.enums.CycleEnum;
-import core.helpers.utils.EnumsBuilder;
+import core.helpers.tools.Database;
+import core.helpers.tools.EnumsBuilder;
+import core.repositories.AgentRepository;
+import core.repositories.ContactRepository;
+import core.repositories.EtudiantRepository;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -21,11 +25,21 @@ public class Etudiant extends Contact {
 
     public Etudiant(){}
 
+    /**
+     * @return
+     */
+    @Override
+    public ContactRepository getRepository() {
+        return new EtudiantRepository(Database.connection);
+    }
+
     public Etudiant(CycleEnum cycle, String code, String nom, Date dateNaissance, String address, String email, String telNumber, String niveau) {
         super(code, nom, dateNaissance, address, email, telNumber);
         this.cycle = cycle;
         this.niveau = niveau;
     }
+
+
 
 
     public void modifier(Etudiant nouvelEtudiant) {

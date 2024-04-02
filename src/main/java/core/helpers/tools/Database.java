@@ -1,4 +1,4 @@
-package core.helpers.utils;
+package core.helpers.tools;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

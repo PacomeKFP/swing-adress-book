@@ -9,5 +9,5 @@ package core.helpers.enums;
  * @author pacome
  */
 public enum StatutAgentEnum {
-    Temporaire, Stagiaire, Permanent;
+    TEMPORAIRE, STAGIAIRE, PERMANENT;
 }

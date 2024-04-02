@@ -1,4 +1,4 @@
-package core.helpers.utils;
+package core.helpers.tools;
 
 /**
  * The Levenshtein distance between two words is the minimum number of

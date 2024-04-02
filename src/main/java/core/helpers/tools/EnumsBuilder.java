@@ -1,4 +1,4 @@
-package core.helpers.utils;
+package core.helpers.tools;
 
 import core.helpers.enums.ChampRechercheEnum;
 import core.helpers.enums.CycleEnum;

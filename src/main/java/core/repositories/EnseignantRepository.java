@@ -1,7 +1,7 @@
 package core.repositories;
 
 import core.entities.Enseignant;
-import core.helpers.utils.EnumsBuilder;
+import core.helpers.tools.EnumsBuilder;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EnseignantRepository extends ContactRepository implements Repository<Enseignant> {
+public class EnseignantRepository extends ContactRepository<Enseignant> {
 
     public EnseignantRepository(Connection connection) {
         super(connection);

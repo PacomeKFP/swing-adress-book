@@ -1,14 +1,14 @@
 package core.repositories;
 
 import core.entities.Contact;
-import core.helpers.utils.Database;
+import core.helpers.tools.Database;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public abstract class ContactRepository {
+public abstract class ContactRepository<E> implements Repository<E>{
 
     private final Connection connection;
 

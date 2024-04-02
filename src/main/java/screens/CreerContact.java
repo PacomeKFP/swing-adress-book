@@ -4,8 +4,14 @@
  */
 package screens;
 
+import core.entities.*;
+import core.helpers.tools.EnumsBuilder;
+import java.sql.Date;
+
+import java.time.Instant;
+import java.time.LocalDate;
+
 /**
- *
  * @author pacome
  */
 public class CreerContact extends javax.swing.JFrame {
@@ -13,7 +19,10 @@ public class CreerContact extends javax.swing.JFrame {
     /**
      * Creates new form CreerContact
      */
-    public CreerContact() {
+    private final MainFrameApplication mainFrameApplication;
+
+    public CreerContact(MainFrameApplication mainFrameApplication) {
+        this.mainFrameApplication = mainFrameApplication;
         initComponents();
     }
 
@@ -34,27 +43,30 @@ public class CreerContact extends javax.swing.JFrame {
         label16 = new java.awt.Label();
         label17 = new java.awt.Label();
         label18 = new java.awt.Label();
-        om1 = new javax.swing.JTextField();
-        om2 = new javax.swing.JTextField();
-        om3 = new javax.swing.JTextField();
-        om4 = new javax.swing.JTextField();
-        om5 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        dateNaissance = new javax.swing.JTextField();
+        adresse = new javax.swing.JTextField();
+        nom = new javax.swing.JTextField();
+        niveau = new javax.swing.JTextField();
+        email = new javax.swing.JTextField();
+        type = new javax.swing.JComboBox<>();
+        cycle = new javax.swing.JComboBox<>();
         label19 = new java.awt.Label();
         label20 = new java.awt.Label();
-        om6 = new javax.swing.JTextField();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        telephone = new javax.swing.JTextField();
+        statutEnseignant = new javax.swing.JComboBox<>();
         label21 = new java.awt.Label();
-        om9 = new javax.swing.JTextField();
+        salaire = new javax.swing.JTextField();
         label24 = new java.awt.Label();
-        om8 = new javax.swing.JTextField();
+        categorie = new javax.swing.JTextField();
         label23 = new java.awt.Label();
         label22 = new java.awt.Label();
-        om7 = new javax.swing.JTextField();
+        indiceSalaire = new javax.swing.JTextField();
         label25 = new java.awt.Label();
-        jComboBox4 = new javax.swing.JComboBox<>();
-        jButton3 = new javax.swing.JButton();
+        statutAgent = new javax.swing.JComboBox<>();
+        annuler = new javax.swing.JButton();
+        creer = new javax.swing.JButton();
+        occupation = new javax.swing.JTextField();
+        label26 = new java.awt.Label();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,7 +82,7 @@ public class CreerContact extends javax.swing.JFrame {
         label13.setText("Entrez les informations du nouveau Contact ");
 
         label15.setFont(new java.awt.Font("Laksaman", 1, 18)); // NOI18N
-        label15.setText("Statut");
+        label15.setText("Type de contact");
 
         label16.setFont(new java.awt.Font("Laksaman", 1, 18)); // NOI18N
         label16.setText("Nom");
@@ -81,49 +93,59 @@ public class CreerContact extends javax.swing.JFrame {
         label18.setFont(new java.awt.Font("Laksaman", 1, 18)); // NOI18N
         label18.setText("Téléphone");
 
-        om1.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        om1.setMinimumSize(new java.awt.Dimension(45, 35));
-        om1.addActionListener(new java.awt.event.ActionListener() {
+        dateNaissance.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        dateNaissance.setMinimumSize(new java.awt.Dimension(45, 35));
+        dateNaissance.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                om1ActionPerformed(evt);
+                dateNaissanceActionPerformed(evt);
             }
         });
 
-        om2.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        om2.setMinimumSize(new java.awt.Dimension(45, 35));
-        om2.addActionListener(new java.awt.event.ActionListener() {
+        adresse.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        adresse.setMinimumSize(new java.awt.Dimension(45, 35));
+        adresse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                om2ActionPerformed(evt);
+                adresseActionPerformed(evt);
             }
         });
 
-        om3.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        om3.setMinimumSize(new java.awt.Dimension(45, 35));
-        om3.addActionListener(new java.awt.event.ActionListener() {
+        nom.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        nom.setMinimumSize(new java.awt.Dimension(45, 35));
+        nom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                om3ActionPerformed(evt);
+                nomActionPerformed(evt);
             }
         });
 
-        om4.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        om4.setMinimumSize(new java.awt.Dimension(45, 35));
-        om4.addActionListener(new java.awt.event.ActionListener() {
+        niveau.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        niveau.setMinimumSize(new java.awt.Dimension(45, 35));
+        niveau.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                om4ActionPerformed(evt);
+                niveauActionPerformed(evt);
             }
         });
 
-        om5.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        om5.setMinimumSize(new java.awt.Dimension(45, 35));
-        om5.addActionListener(new java.awt.event.ActionListener() {
+        email.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        email.setMinimumSize(new java.awt.Dimension(45, 35));
+        email.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                om5ActionPerformed(evt);
+                emailActionPerformed(evt);
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Etudiant", "Enseignant", "Agent" }));
+        type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Etudiant", "Enseignant", "Agent" }));
+        type.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                typeActionPerformed(evt);
+            }
+        });
+        type.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                typePropertyChange(evt);
+            }
+        });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Licence", "Ingénieur" }));
+        cycle.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "LICENCE", "INGENIEUR" }));
 
         label19.setFont(new java.awt.Font("Laksaman", 1, 18)); // NOI18N
         label19.setText("Niveau");
@@ -131,35 +153,35 @@ public class CreerContact extends javax.swing.JFrame {
         label20.setFont(new java.awt.Font("Laksaman", 1, 18)); // NOI18N
         label20.setText("Cycle");
 
-        om6.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        om6.setMinimumSize(new java.awt.Dimension(45, 35));
-        om6.addActionListener(new java.awt.event.ActionListener() {
+        telephone.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        telephone.setMinimumSize(new java.awt.Dimension(45, 35));
+        telephone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                om6ActionPerformed(evt);
+                telephoneActionPerformed(evt);
             }
         });
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vacataire", "Temporaire" }));
+        statutEnseignant.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "VACATAIRE", "PERMANENT" }));
 
         label21.setFont(new java.awt.Font("Laksaman", 1, 18)); // NOI18N
         label21.setText("Statut");
 
-        om9.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        om9.setMinimumSize(new java.awt.Dimension(45, 35));
-        om9.addActionListener(new java.awt.event.ActionListener() {
+        salaire.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        salaire.setMinimumSize(new java.awt.Dimension(45, 35));
+        salaire.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                om9ActionPerformed(evt);
+                salaireActionPerformed(evt);
             }
         });
 
         label24.setFont(new java.awt.Font("Laksaman", 1, 18)); // NOI18N
         label24.setText("Salaire");
 
-        om8.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        om8.setMinimumSize(new java.awt.Dimension(45, 35));
-        om8.addActionListener(new java.awt.event.ActionListener() {
+        categorie.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        categorie.setMinimumSize(new java.awt.Dimension(45, 35));
+        categorie.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                om8ActionPerformed(evt);
+                categorieActionPerformed(evt);
             }
         });
 
@@ -169,21 +191,45 @@ public class CreerContact extends javax.swing.JFrame {
         label22.setFont(new java.awt.Font("Laksaman", 1, 18)); // NOI18N
         label22.setText("Indice de Salaire");
 
-        om7.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        om7.setMinimumSize(new java.awt.Dimension(45, 35));
-        om7.addActionListener(new java.awt.event.ActionListener() {
+        indiceSalaire.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        indiceSalaire.setMinimumSize(new java.awt.Dimension(45, 35));
+        indiceSalaire.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                om7ActionPerformed(evt);
+                indiceSalaireActionPerformed(evt);
             }
         });
 
         label25.setFont(new java.awt.Font("Laksaman", 1, 18)); // NOI18N
         label25.setText("Statut");
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Temporaire", "Stagiaire", "Permanent" }));
+        statutAgent.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TEMPORAIRE", "STAGIAIRE", "PERMANENT" }));
 
-        jButton3.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
-        jButton3.setText("Enregistrer");
+        annuler.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
+        annuler.setText("Annuler");
+        annuler.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                annulerActionPerformed(evt);
+            }
+        });
+
+        creer.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
+        creer.setText("Enregistrer");
+        creer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                creerActionPerformed(evt);
+            }
+        });
+
+        occupation.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        occupation.setMinimumSize(new java.awt.Dimension(45, 35));
+        occupation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                occupationActionPerformed(evt);
+            }
+        });
+
+        label26.setFont(new java.awt.Font("Laksaman", 1, 18)); // NOI18N
+        label26.setText("Ocupation");
 
         javax.swing.GroupLayout sidenav1Layout = new javax.swing.GroupLayout(sidenav1);
         sidenav1.setLayout(sidenav1Layout);
@@ -194,7 +240,7 @@ public class CreerContact extends javax.swing.JFrame {
                 .addGroup(sidenav1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(sidenav1Layout.createSequentialGroup()
                         .addComponent(label13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(sidenav1Layout.createSequentialGroup()
                         .addGroup(sidenav1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(sidenav1Layout.createSequentialGroup()
@@ -207,17 +253,17 @@ public class CreerContact extends javax.swing.JFrame {
                                     .addComponent(label23, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(sidenav1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(om3, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(om2, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(om6, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(om9, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(om8, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(nom, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(adresse, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(telephone, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(salaire, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(categorie, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(sidenav1Layout.createSequentialGroup()
                                 .addComponent(label22, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(sidenav1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(om7, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(statutAgent, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(indiceSalaire, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(label25, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(sidenav1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(sidenav1Layout.createSequentialGroup()
@@ -225,103 +271,123 @@ public class CreerContact extends javax.swing.JFrame {
                                 .addGroup(sidenav1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(sidenav1Layout.createSequentialGroup()
                                         .addComponent(label19, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(om4, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                                        .addComponent(niveau, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(sidenav1Layout.createSequentialGroup()
                                         .addGroup(sidenav1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(label6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(label17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(label15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addGroup(sidenav1Layout.createSequentialGroup()
                                                 .addComponent(label20, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 0, Short.MAX_VALUE)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGap(0, 0, Short.MAX_VALUE))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sidenav1Layout.createSequentialGroup()
+                                                .addGroup(sidenav1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(label26, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(label6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(label17, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                                         .addGroup(sidenav1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(om5, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(om1, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(cycle, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(dateNaissance, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(occupation, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(sidenav1Layout.createSequentialGroup()
                                         .addComponent(label21, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(176, 176, 176))))
-                            .addGroup(sidenav1Layout.createSequentialGroup()
+                                        .addComponent(statutEnseignant, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(176, 176, 176))
+                                    .addGroup(sidenav1Layout.createSequentialGroup()
+                                        .addComponent(label15, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sidenav1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap())
+                                .addComponent(annuler, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(193, 193, 193))))))
+            .addGroup(sidenav1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sidenav1Layout.createSequentialGroup()
+                    .addContainerGap(825, Short.MAX_VALUE)
+                    .addComponent(creer, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(16, 16, 16)))
         );
         sidenav1Layout.setVerticalGroup(
             sidenav1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sidenav1Layout.createSequentialGroup()
-                .addGroup(sidenav1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, sidenav1Layout.createSequentialGroup()
-                        .addGap(105, 105, 105)
-                        .addComponent(om1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addGroup(sidenav1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(label13, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(sidenav1Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(label13, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(sidenav1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(label16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
-                            .addComponent(om3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(label6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(2, 2, 2)
+                        .addGroup(sidenav1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addGroup(sidenav1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sidenav1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(label16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                        .addComponent(nom, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(label6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(sidenav1Layout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(dateNaissance, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(sidenav1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(sidenav1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(label17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(om5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(email, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(sidenav1Layout.createSequentialGroup()
                         .addGap(4, 4, 4)
-                        .addComponent(om2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(adresse, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(label12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(sidenav1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(label18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(telephone, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sidenav1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(label18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(label15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(om6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(label26, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(occupation, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(20, 20, 20)
                 .addGroup(sidenav1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(sidenav1Layout.createSequentialGroup()
                         .addGroup(sidenav1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(label20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cycle, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(sidenav1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(sidenav1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(om4, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(niveau, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sidenav1Layout.createSequentialGroup()
                                 .addGap(19, 19, 19)
                                 .addComponent(label19, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(sidenav1Layout.createSequentialGroup()
                         .addGroup(sidenav1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(om9, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(salaire, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(label24, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(17, 17, 17)
                         .addGroup(sidenav1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(om8, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(categorie, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(label23, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(sidenav1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(sidenav1Layout.createSequentialGroup()
-                        .addGap(18, 18, Short.MAX_VALUE)
-                        .addGroup(sidenav1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(sidenav1Layout.createSequentialGroup()
-                                .addGroup(sidenav1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(label22, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(label21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(om7, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(sidenav1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(label25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(45, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sidenav1Layout.createSequentialGroup()
+                        .addComponent(statutEnseignant, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20))))
+                        .addComponent(annuler, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(sidenav1Layout.createSequentialGroup()
+                        .addGroup(sidenav1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(label22, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(indiceSalaire, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(sidenav1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(statutAgent, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 54, Short.MAX_VALUE))))
+            .addGroup(sidenav1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sidenav1Layout.createSequentialGroup()
+                    .addContainerGap(492, Short.MAX_VALUE)
+                    .addComponent(creer, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(10, 10, 10)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -344,83 +410,114 @@ public class CreerContact extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void om1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_om1ActionPerformed
+    private void dateNaissanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateNaissanceActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_om1ActionPerformed
+    }//GEN-LAST:event_dateNaissanceActionPerformed
 
-    private void om2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_om2ActionPerformed
+    private void adresseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adresseActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_om2ActionPerformed
+    }//GEN-LAST:event_adresseActionPerformed
 
-    private void om3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_om3ActionPerformed
+    private void nomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_om3ActionPerformed
+    }//GEN-LAST:event_nomActionPerformed
 
-    private void om4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_om4ActionPerformed
+    private void niveauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_niveauActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_om4ActionPerformed
+    }//GEN-LAST:event_niveauActionPerformed
 
-    private void om5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_om5ActionPerformed
+    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_om5ActionPerformed
+    }//GEN-LAST:event_emailActionPerformed
 
-    private void om6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_om6ActionPerformed
+    private void telephoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telephoneActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_om6ActionPerformed
+    }//GEN-LAST:event_telephoneActionPerformed
 
-    private void om9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_om9ActionPerformed
+    private void salaireActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salaireActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_om9ActionPerformed
+    }//GEN-LAST:event_salaireActionPerformed
 
-    private void om8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_om8ActionPerformed
+    private void categorieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categorieActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_om8ActionPerformed
+    }//GEN-LAST:event_categorieActionPerformed
 
-    private void om7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_om7ActionPerformed
+    private void indiceSalaireActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_indiceSalaireActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_om7ActionPerformed
+    }//GEN-LAST:event_indiceSalaireActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+    private void annulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_annulerActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        mainFrameApplication.setVisible(true);
+    }//GEN-LAST:event_annulerActionPerformed
+
+    private void creerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creerActionPerformed
+        // TODO add your handling code here:
+
+        Repertoire repertoire = mainFrameApplication.getRepertoire();
+        // creer le contact
+
+        Contact contact;
+
+        String user = (String) type.getSelectedItem();
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CreerContact.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CreerContact.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CreerContact.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CreerContact.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+            if (user == "Etudiant") {
+                contact = new Etudiant(
+                        EnumsBuilder.cycleEnumFromString((String) cycle.getSelectedItem()),
+                        "etu" + Integer.toString((int) (Math.random() * 500000) % 500000), nom.getText(),  Date.valueOf(LocalDate.of(2004, 06, 29)), adresse.getText(), email.getText(), telephone.getText(), niveau.getText());
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CreerContact().setVisible(true);
+            } else if (user == "Enseignant") {
+                contact = new Enseignant(
+                        EnumsBuilder.statutEnseignantEnumFromString((String) statutEnseignant.getSelectedItem()),
+                        "ens" + Integer.toString((int) (Math.random() * 500000) % 500000), nom.getText(),  Date.valueOf(LocalDate.of(2004, 06, 29)), adresse.getText(), email.getText(), telephone.getText());
+            } else {
+                contact = new Agent(
+                        Float.parseFloat(salaire.getText()),
+                        EnumsBuilder.statutAgentEnumFromString((String) statutEnseignant.getSelectedItem()), categorie.getText(), indiceSalaire.getText(), occupation.getText(),
+                        "agent" + Integer.toString((int) (Math.random() * 500000) % 500000), nom.getText(), Date.valueOf(LocalDate.of(2004, 06, 29)), adresse.getText(), email.getText(), telephone.getText());
             }
-        });
-    }
+
+        } catch (Exception e) {
+            MainFrameApplication.showErrorStatic("Erreur de base de donnée", "Une erreur est survenue lors de l'enregistremement");
+            e.printStackTrace();
+            return;
+        }
+
+        repertoire.ajouterContact(contact);
+        
+        System.out.println(repertoire.getContacts().size());
+
+        mainFrameApplication.loadTableContent(repertoire.getContacts());
+        mainFrameApplication.setVisible(true);
+        this.dispose();
+
+    }//GEN-LAST:event_creerActionPerformed
+
+    private void occupationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_occupationActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_occupationActionPerformed
+
+    private void typeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_typeActionPerformed
+
+    private void typePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_typePropertyChange
+        // TODO add your handling code here:
+        
+        System.out.println("Prop changed");
+    }//GEN-LAST:event_typePropertyChange
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
+    private javax.swing.JTextField adresse;
+    private javax.swing.JButton annuler;
+    private javax.swing.JTextField categorie;
+    private javax.swing.JButton creer;
+    private javax.swing.JComboBox<String> cycle;
+    private javax.swing.JTextField dateNaissance;
+    private javax.swing.JTextField email;
+    private javax.swing.JTextField indiceSalaire;
     private java.awt.Label label12;
     private java.awt.Label label13;
     private java.awt.Label label15;
@@ -434,16 +531,16 @@ public class CreerContact extends javax.swing.JFrame {
     private java.awt.Label label23;
     private java.awt.Label label24;
     private java.awt.Label label25;
+    private java.awt.Label label26;
     private java.awt.Label label6;
-    private javax.swing.JTextField om1;
-    private javax.swing.JTextField om2;
-    private javax.swing.JTextField om3;
-    private javax.swing.JTextField om4;
-    private javax.swing.JTextField om5;
-    private javax.swing.JTextField om6;
-    private javax.swing.JTextField om7;
-    private javax.swing.JTextField om8;
-    private javax.swing.JTextField om9;
+    private javax.swing.JTextField niveau;
+    private javax.swing.JTextField nom;
+    private javax.swing.JTextField occupation;
+    private javax.swing.JTextField salaire;
     private javax.swing.JPanel sidenav1;
+    private javax.swing.JComboBox<String> statutAgent;
+    private javax.swing.JComboBox<String> statutEnseignant;
+    private javax.swing.JTextField telephone;
+    private javax.swing.JComboBox<String> type;
     // End of variables declaration//GEN-END:variables
 }
